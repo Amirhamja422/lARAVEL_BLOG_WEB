@@ -46,9 +46,9 @@
                     <td>{{$row->email}}</td>
                     <td>
                         {{-- <a href="{{route('class.edit',$row->id)}}" class="btn btn-info">Edit</a>
-                        <a href="{{route('class.delete',$row->id)}}" class ="btn btn-danger">Delete</a> --}}
-                        <a href="" class="btn btn-info">Edit</a>
-                        <a href="" class ="btn btn-danger">Delete</a>
+                        <a href="" class{{route('class.delete',$row->id)}} ="btn btn-danger">Delete</a> --}}
+                        <a href="{{route('class.edit',$row->id)}}" class="btn btn-info">Edit</a>
+                        <a href="{{route('class.delete',$row->id)}}" class ="btn btn-danger">Delete</a>
 
                     </td>
                     </tr>

@@ -33,6 +33,28 @@ class CategoryController extends Controller
     return view('admin.category',compact('clsview'));
      }
 
+     public function delete($id){
+        DB::table('test')->where('id',$id)->delete();
+        return redirect()->back()->with('message', 'Your registration was successfully deleted');
+    
+      } 
+
+
+
+      public function edit($id){
+        $data['test'] = DB::table('test')->where('id',$id)->first();
+        //dd($data);
+        return view('admin.edit',$data);
+         }
+    
+      public function update(Request $request , $id){
+            $data['class_name'] = $request->name;
+            $data['email'] = $request->email;
+            DB::table('test')->where('id',$id)->update($data);
+          return redirect()->route('admin.category')->with('message', 'Your registration was successfully updated');
+    
+      }
+
 
     }
 
