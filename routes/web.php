@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\CustomAuthCotroller;
 use PhpParser\Node\Stmt\Catch_;
 
 
@@ -15,3 +15,11 @@ Route::post('store', [CategoryController::class, 'store'])->name('class.store');
 Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('class.delete');
 Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('class.edit');
 Route::put('update/{id}', [CategoryController::class, 'update'])->name('class.update');
+
+Route::get('login', [CustomAuthCotroller::class, 'login'])->name('login');
+Route::get('register', [CustomAuthCotroller::class, 'registration'])->name('register');
+Route::post('regCreate', [CustomAuthCotroller::class, 'regCreate'])->name('register.create');
+Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('login-user');
+
+
+
