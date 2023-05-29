@@ -21,5 +21,6 @@ Route::get('register', [CustomAuthCotroller::class, 'registration'])->name('regi
 Route::post('regCreate', [CustomAuthCotroller::class, 'regCreate'])->name('register.create');
 Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('login-user');
 
+Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
 
 
