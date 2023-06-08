@@ -20,7 +20,7 @@ Route::get('login', [CustomAuthCotroller::class, 'login'])->name('login');
 Route::get('register', [CustomAuthCotroller::class, 'registration'])->name('register');
 Route::post('regCreate', [CustomAuthCotroller::class, 'regCreate'])->name('register.create');
 Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('login-user');
-
+///logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
 
 
