@@ -29,6 +29,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{ route('admin.brand') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Brand List
+              </p>
+            </a>
+          </li>
           
           <li class="nav-item">
             <a href="logout" class="nav-link">

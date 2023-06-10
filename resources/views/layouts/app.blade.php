@@ -124,7 +124,7 @@
 <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
-<script>
+{{-- <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -143,6 +143,9 @@
       "responsive": true,
     });
   });
-</script>
+</script> --}}
+
+
+
 </body>
 </html>

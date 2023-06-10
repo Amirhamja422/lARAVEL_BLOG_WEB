@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
@@ -32,6 +33,18 @@ class CategoryController extends Controller
     //echo "ok";
     return view('admin.category',compact('clsview'));
      }
+
+
+
+     
+    public function branView(){
+      $brandViews = DB::table('brand');
+      // dd($brandViews);
+      return DataTables::query($brandViews)->toJson();
+
+      // return view('admin.brand',compact('brandViews'));
+       }
+  
 
      public function delete($id){
         DB::table('test')->where('id',$id)->delete();
