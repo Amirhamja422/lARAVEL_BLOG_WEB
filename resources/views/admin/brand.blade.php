@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Category</h1>
+            <h1>BRAND</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-              <li class="breadcrumb-item active">Category DataTables</li>
+              <li class="breadcrumb-item active"> Brand DataTables</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
               <div class="card-header">
     <!-- /.card-header -->
     <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="yajra-datatable" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                     <th>Sl</th>
@@ -74,46 +74,35 @@
    </section>
                                                                        
 @endsection
-<script>
-    $(document).ready(function() {
-      $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  }
-              });
-      });
-
-     $(function () {
-        $('#dataTable').DataTable({
-            processing: true,
-            serverSide: true,
-            bDestroy: true,
-            ajax: ({
-                url: "{{ route('admin.brand') }}",  
-            }),
-            displayLength: 10,
-            columns: [{
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'title',
-                    name: 'title'
-                },
-                {
-                    data: 'identity',
-                    name: 'identity'
-                },
-                {
-                    data: 'description',
-                    name: 'description'
-                },
-                {
-                    data: 'written',
-                    name: 'written'
-                },
-            ]
-        });
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    
+    var table = $('#yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('admin.brand') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'title', name: 'title'},
+            {data: 'identity', name: 'identity'},
+            {data: 'description', name: 'description'},
+            {data: 'written', name: 'written'},
+            {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            },
+        ]
     });
-  </script>
+    
+  });
+</script>
+
   

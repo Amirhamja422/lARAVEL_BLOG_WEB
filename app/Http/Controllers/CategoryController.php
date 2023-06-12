@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\Facades\DataTables;
+// use Yajra\DataTables\Facades\DataTables;
+use DataTables;
 
 class CategoryController extends Controller
 {
@@ -37,15 +38,27 @@ class CategoryController extends Controller
 
 
      
-    public function branView(){
-      $brandViews = DB::table('brand');
-      // dd($brandViews);
-      return DataTables::query($brandViews)->toJson();
+     public function branView(Request $request)
+     {
+         if ($request->ajax()) {
+          $data = DB::table('brand')->get();
+             return Datatables::of($data)
+                 ->addIndexColumn()
+                 ->addColumn('action', function($row){
+                     $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                     return $actionBtn;
+                 })
+                 ->rawColumns(['action'])
+                 ->make(true);
+                //  return redirect()->back();
 
-      // return view('admin.brand',compact('brandViews'));
-       }
+         }
+         return view('admin.brand');
+
+     }
+ 
   
-
+      // }
      public function delete($id){
         DB::table('test')->where('id',$id)->delete();
         return redirect()->back()->with('message', 'Your registration was successfully deleted');
