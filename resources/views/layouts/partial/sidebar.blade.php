@@ -38,6 +38,16 @@
               </p>
             </a>
           </li>
+
+          
+          <li class="nav-item">
+            <a href="{{ route('profile.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Profile List
+              </p>
+            </a>
+          </li>
           
           <li class="nav-item">
             <a href="logout" class="nav-link">
