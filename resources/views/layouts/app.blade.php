@@ -75,16 +75,16 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
+{{-- <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script> --}}
 
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('backend') }}/plugins/jquery-ui/jquery-ui.min.js"></script>
+{{-- <script src="{{ asset('backend') }}/plugins/jquery-ui/jquery-ui.min.js"></script> --}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="{{ asset('backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
 <!-- ChartJS -->
 <script src="{{ asset('backend') }}/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -120,9 +120,9 @@
 <script src="{{ asset('backend') }}/plugins/jszip/jszip.min.js"></script>
 <script src="{{ asset('backend') }}/plugins/pdfmake/pdfmake.min.js"></script>
 <script src="{{ asset('backend') }}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+{{-- <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script> --}}
+{{-- <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> --}}
 
 
 

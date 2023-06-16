@@ -84,7 +84,9 @@ class ProfileController extends Controller
                     data-pp='$data->phone_pass'
                     >Edit</a>&nbsp;";
                     #Delete Button
-                    $actionBtn .= "<a href='javascript:void(0)' class='delete btn btn-danger btn-sm' onclick='deleteData($data->user_id)'>Delete</a>";
+                    $actionBtn .= "<a href='javascript:void(0)' class='delete btn btn-danger btn-sm delete_user'
+                    data-id='$data->user_id'
+                    >Delete</a>";
 
                     return $actionBtn;
                 })
@@ -96,5 +98,17 @@ class ProfileController extends Controller
         return view('admin.profile.test');
 
     }
+
+
+    public function deleteUser(Request $request)
+    {
+        // dd($request);
+      DB::table('vicidial_users')->where('user_id', $request['dlt_id'])->delete();
+      return response()->json([
+        'status' => 'success',
+      ]);
+    }
+  
+  
 
 }
