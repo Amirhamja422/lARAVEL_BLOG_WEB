@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use PhpParser\Node\Stmt\Catch_;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+// use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\ScategoryController;
-// use Illuminate\Http\JsonResponse;
-use PhpParser\Node\Stmt\Catch_;
 
 
 ## Category 
@@ -27,6 +28,8 @@ Route::resource('categories',ScategoryController::class);
 
 ##user
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.create');
+Route::get('profile_view', [ProfileController::class, 'profileView'])->name('profile.view');
+
 
 
 ## login and register users web route

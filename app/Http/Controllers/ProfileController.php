@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class ProfileController extends Controller
 {
@@ -63,6 +65,29 @@ class ProfileController extends Controller
 
     public function index(){
         return view('admin.profile.test');
+    }
+
+    public function profileView(Request $request)
+    {
+        if ($request->ajax()) {
+         $data = DB::table('vicidial_users')->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($data){
+                    #Edit Button 
+                    $actionBtn = "<a href='javascript:void(0)' class='edit btn btn-success btn-sm' onclick='editData($data->user_id)'>Edit</a>&nbsp;";
+                    #Delete Button
+                    $actionBtn .= "<a href='javascript:void(0)' class='delete btn btn-danger btn-sm' onclick='deleteData($data->user_id)'>Delete</a>";
+
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+               //  return redirect()->back();
+
+        }
+        return view('admin.profile.test');
+
     }
 
 }
