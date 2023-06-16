@@ -75,7 +75,14 @@ class ProfileController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($data){
                     #Edit Button 
-                    $actionBtn = "<a href='javascript:void(0)' class='edit btn btn-success btn-sm' onclick='editData($data->user_id)'>Edit</a>&nbsp;";
+                    $actionBtn = "<a href='javascript:void(0)' class='edit btn btn-success btn-sm update_user_form' data-toggle='modal' data-target='#editModal' data-id='$data->user_id'
+                    data-user='$data->user'
+                    data-pass='$data->pass'
+                    data-fname='$data->full_name'
+                    data-group='$data->user_group'
+                    data-login='$data->phone_login'
+                    data-pp='$data->phone_pass'
+                    >Edit</a>&nbsp;";
                     #Delete Button
                     $actionBtn .= "<a href='javascript:void(0)' class='delete btn btn-danger btn-sm' onclick='deleteData($data->user_id)'>Delete</a>";
 

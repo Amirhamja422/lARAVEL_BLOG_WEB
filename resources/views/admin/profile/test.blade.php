@@ -62,23 +62,62 @@
                         <h5 class="modal-title">Edit User</h5>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="modal-body">Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-                        roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-                        Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
-                        the more obscure Latin words, consectetur.</div>
+                    <div class="modal-body">
+                      <form action="" method="post" id="update_product_form">
+                        <div class="form-group row">
+                          <label for="user_id" class="col-sm-2 col-form-label">User ID</label>
+                          <div class="col-sm-10">
+                            <input type="user_id" class="form-control" id="up_userId" name="up_userId" placeholder="User ID">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-sm-2 col-form-label">User Name</label>
+                          <div class="col-sm-10">
+                            <input type="username" class="form-control" id="up_username" name="up_username" placeholder="User Name">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="Password" class="col-sm-2 col-form-label">Password</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="up_password" name="up_password" placeholder="Password">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="fullname" class="col-sm-2 col-form-label">Full Name</label>
+                          <div class="col-sm-10">
+                            <input type="full_name" class="form-control" id="up_fullanme" placeholder="Full Name">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="usergroup" class="col-sm-2 col-form-label">User Group</label>
+                          <div class="col-sm-10">
+                            <input type="user_group" class="form-control" id="up_user_group" placeholder="User Group">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="phone_login" class="col-sm-2 col-form-label">Phone Login</label>
+                          <div class="col-sm-10">
+                            <input type="phone_login" class="form-control" id="up_phone_login" placeholder="Phone Password">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="phone_pass" class="col-sm-2 col-form-label">Phone Pass</label>
+                          <div class="col-sm-10">
+                            <input type="phone_pass" class="form-control" id="up_phone_pass" placeholder="Phone Password">
+                          </div>
+                        </div>
+                        
+                      </form>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-primary" onclick="updateData()">Update</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal End -->
-
-
-
-   </section>
-                                                                       
+   </section>                                                                      
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
@@ -101,7 +140,7 @@
             {data: 'full_name', name: 'full_name'},
             {data: 'user_group', name: 'user_group'},
             {data: 'phone_login', name: 'phone_login'},
-            {data: 'phone_login', name: 'phone_login'},
+            {data: 'phone_pass', name: 'phone_pass'},
             {
                 data: 'action', 
                 name: 'action', 
@@ -113,13 +152,27 @@
     
   });
 
+  
+
+    $(document).on('click','.update_user_form',function(){
+      let id =$(this).data("id");
+      let user =$(this).data("user");
+      let pass =$(this).data("pass");
+      let fname =$(this).data("fname");
+      let usergroup =$(this).data("group");
+      let phonelogin =$(this).data("login");
+      let phonepass =$(this).data("pp");
+      $('#up_userId').val(id);
+      $('#up_username').val(user);
+      $('#up_password').val(pass);
+      $('#up_fullanme').val(fname);
+      $('#up_user_group').val(usergroup);
+      $('#up_phone_login').val(phonelogin);
+      $('#up_phone_pass').val(phonepass);
+
+  });
 
 
-    function editData() {
-       $('#editModal').modal('show');
-    }
-
-      
 
 
 
