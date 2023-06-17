@@ -67,6 +67,9 @@ class ProfileController extends Controller
         return view('admin.profile.test');
     }
 
+
+
+
     public function profileView(Request $request)
     {
         if ($request->ajax()) {
@@ -110,5 +113,20 @@ class ProfileController extends Controller
     }
   
   
+
+    public function createUser(Request $request){
+        // dd($request->all());
+        $data['user'] = $request->username;
+        $data['pass'] = $request->password;
+        $data['full_name'] = $request->full_name;
+        $data['user_group'] = $request->user_group;
+        $data['phone_login'] = $request->phone_login;
+        $data['phone_pass'] = $request->phone_pass;
+        DB::table('vicidial_users')->insert($data);
+        return response()->json([
+          'status' => 'success',
+        ]);
+      }
+    
 
 }

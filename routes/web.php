@@ -30,6 +30,7 @@ Route::resource('categories',ScategoryController::class);
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.create');
 Route::get('profile_view', [ProfileController::class, 'profileView'])->name('profile.view');
 Route::POST('delete', [ProfileController::class,'deleteUser'])->name('profile.delete');
+Route::POST('pro', [ProfileController::class, 'createUser'])->name('profile.create');
 
 
 ## login and register users web route
