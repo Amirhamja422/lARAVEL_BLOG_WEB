@@ -15,7 +15,7 @@
             <ol class="breadcrumb float-sm-right">
               {{-- <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
               <li class="breadcrumb-item active"> Brand DataTables</li> --}}
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#userCretaeModal">Add User</button>
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#PhoneCreateModel">Add Phone</button>
 
             </ol>
           </div>
@@ -34,13 +34,13 @@
                      <thead>
                        <tr>
                         <th>SL</th>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Fullname</th>
-                        <th>Usergroup</th>
-                        <th>Phone Login</th>
-                        <th>Phone Password</th>
+                        <th>Extension</th>
+                        <th>Server IP</th>
+                        <th>User Login</th>
+                        <th>User Pass</th>
+                        <th>Phone Type</th>
+                        <th>Status</th>
+                        <th>Active</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -116,11 +116,11 @@
    </section>  
    
    
-   <div class="modal fade" id="userCretaeModal" tabindex="-1" aria-hidden="true">
+   <div class="modal fade" id="PhoneCreateModel" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add User</h5>
+                <h5 class="modal-title">Add Phone</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -128,39 +128,39 @@
                 @csrf
 
                 <div class="form-group row">
-                  <label for="username" class="col-sm-2 col-form-label">User Name</label>
+                  <label for="extension" class="col-sm-2 col-form-label">Extension</label>
                   <div class="col-sm-10">
-                    <input type="username" class="form-control" id="username" name="username" placeholder="User Name">
+                    <input type="extension" class="form-control" id="extension" name="extension" placeholder="Phone extension">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="Password" class="col-sm-2 col-form-label">Password</label>
+                  <label for="server_ip" class="col-sm-2 col-form-label">Server IP</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="server_ip" class="form-control" id="server_ip" name="server_ip" placeholder="server ip">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="fullname" class="col-sm-2 col-form-label">Full Name</label>
+                  <label for="fullname" class="col-sm-2 col-form-label">Phone Login</label>
                   <div class="col-sm-10">
-                    <input type="full_name" class="form-control" id="full_name" placeholder="Full Name">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="usergroup" class="col-sm-2 col-form-label">User Group</label>
-                  <div class="col-sm-10">
-                    <input type="user_group" class="form-control" id="user_group" placeholder="User Group">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="phone_login" class="col-sm-2 col-form-label">Phone Login</label>
-                  <div class="col-sm-10">
-                    <input type="phone_login" class="form-control" id="phone_login" placeholder="Phone Password">
+                    <input type="phone_login" class="form-control" id="phone_login" placeholder="Phone login">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="phone_pass" class="col-sm-2 col-form-label">Phone Pass</label>
                   <div class="col-sm-10">
                     <input type="phone_pass" class="form-control" id="phone_pass" placeholder="Phone Password">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="phone_type" class="col-sm-2 col-form-label">Phone Type</label>
+                  <div class="col-sm-10">
+                    <input type="phone_type" class="form-control" id="phone_type" placeholder="Phone Type">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="phone_status" class="col-sm-2 col-form-label">Status</label>
+                  <div class="col-sm-10">
+                    <input type="phone_status" class="form-control" id="phone_status" placeholder="Phone status">
                   </div>
                 </div>        
               </form>
@@ -197,16 +197,16 @@ $(document).ready(function(){
     var table = $('#yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('profile.view') }}",
+        ajax: "{{ route('admin.phone') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'user_id', name: 'user_id'},
-            {data: 'user', name: 'user'},
-            {data: 'pass', name: 'pass'},
-            {data: 'full_name', name: 'full_name'},
-            {data: 'user_group', name: 'user_group'},
-            {data: 'phone_login', name: 'phone_login'},
-            {data: 'phone_pass', name: 'phone_pass'},
+            {data: 'extension', name: 'phoneextension'},
+            {data: 'server_ip', name: 'servername'},
+            {data: 'login', name: 'userlogin'},
+            {data: 'pass', name: 'userpass'},
+            {data: 'phone_type', name: 'phonetype'},
+            {data: 'status', name: 'phonestatus'},
+            {data: 'active', name: 'phoneactive'},
             {
                 data: 'action', 
                 name: 'action', 
@@ -217,145 +217,4 @@ $(document).ready(function(){
       });
     
     });
-
-
-  $(document).on('click','.update_user_form',function(){
-      let id =$(this).data("id");
-      let user =$(this).data("user");
-      let pass =$(this).data("pass");
-      let fname =$(this).data("fname");
-      let usergroup =$(this).data("group");
-      let phonelogin =$(this).data("login");
-      let phonepass =$(this).data("pp");
-      $('#up_userId').val(id);
-      $('#up_username').val(user);
-      $('#up_password').val(pass);
-      $('#up_fullanme').val(fname);
-      $('#up_user_group').val(usergroup);
-      $('#up_phone_login').val(phonelogin);
-      $('#up_phone_pass').val(phonepass);
-  });
-
-  $(document).on('click','.delete_user',function(e){
-      e.preventDefault();
-      let dlt_id =$(this).data('id');
-      if(confirm('are you sure you want to delete??')){
-        
-      $.ajax({
-      url:"{{route('profile.delete')}}",
-      method:'post',
-      data:{
-          dlt_id:dlt_id
-      },
-      success:function(response){
-          if(response.status == 'success'){
-            Command: toastr["success"]("Success!", "User deleted successfully");
-            $('#yajra-datatable').DataTable().ajax.reload();
-            toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-              }
-            }
-          }
-
-         })
-        }
-    });
-
-
-    $(document).on('click','.uaerCretaeData',function(){
-           let username =$('#username').val();     
-           let password =$('#password').val();     
-           let full_name =$('#full_name').val();     
-           let user_group =$('#user_group').val();     
-           let phone_login =$('#phone_login').val();     
-           let phone_pass =$('#phone_pass').val();
-           $.ajax({
-            url:"{{route('profile.create')}}",
-                method:'POST',
-                data:{
-                    username:username,
-                    password:password,
-                    full_name:full_name,
-                    user_group:user_group,
-                    phone_login:phone_login,
-                    phone_pass:phone_pass
-                    },
-                success:function(response){
-                     // console.log(response);
-                     if(response.status == 'success'){
-                    Command: toastr["success"]("Success!", "User Added successfully");
-                    $('#yajra-datatable').DataTable().ajax.reload();
-
-                    toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                        }
-                    }
-                    },
-                    error:function(err){
-                    console.log(err);
-                    let error=err.responseJSON;
-                    $.each(error.errors,function(index,value){
-                    console.log(value);
-                    $('.errorMesgContainer').append('<div class="alert alert-danger" role="alert">'+value+'</div>');
-
-                    });
-
-                    }
-
-                })
-            });
-
-            $(document).on('click','.user_deactivate',function(){
-                  let isConfirm = confirm('Are you sure to DEACTIVE this User?');
-                  if (isConfirm) {
-                    let id =$(this).data('id');
-                        $.ajax({
-                              url:"{{route('profile.deactive')}}",
-                              type: 'POST',
-                              data: {
-                                    user_deactivate_id:id
-                              },
-                              success: function (response) {
-                                if(response.status == 'success'){
-                                  $('#yajra-datatable').DataTable().ajax.reload();
-
-                                }
-                              }
-                        });
-                  }
-            });
-
-     
-
-
-
-
 </script>

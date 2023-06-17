@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
 
@@ -19,18 +20,19 @@ Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('class.de
 Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('class.edit');
 Route::put('update/{id}', [CategoryController::class, 'update'])->name('class.update');
 
-## datalist view using yajra datatables
-Route::get('brand', [CategoryController::class, 'branView'])->name('admin.brand');
-
 
 ## Resource
 Route::resource('categories',ScategoryController::class);
 
 ##user
-Route::get('profile', [ProfileController::class, 'index'])->name('profile.create');
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('profile_view', [ProfileController::class, 'profileView'])->name('profile.view');
 Route::POST('delete', [ProfileController::class,'deleteUser'])->name('profile.delete');
 Route::POST('pro', [ProfileController::class, 'createUser'])->name('profile.create');
+Route::POST('deactive', [ProfileController::class, 'userDeactive'])->name('profile.deactive');
+
+## phones
+Route::get('phone', [PhoneController::class, 'phoneView'])->name('admin.phone');
 
 
 ## login and register users web route

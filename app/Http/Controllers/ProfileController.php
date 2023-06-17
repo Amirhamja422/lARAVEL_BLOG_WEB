@@ -85,11 +85,24 @@ class ProfileController extends Controller
                     data-group='$data->user_group'
                     data-login='$data->phone_login'
                     data-pp='$data->phone_pass'
-                    >Edit</a>&nbsp;";
+                    ><i class='fa fa-edit'></i></a>&nbsp;";
                     #Delete Button
                     $actionBtn .= "<a href='javascript:void(0)' class='delete btn btn-danger btn-sm delete_user'
                     data-id='$data->user_id'
-                    >Delete</a>";
+                    ><i class='fas fa-trash'></i></a>&nbsp;";
+
+                    if($data->status=='1'){
+                        $actionBtn .= "<a href='javascript:void(0)' class='btn btn-warning btn-sm user_deactivate'
+                        data-id='$data->user_id'
+                        ><center><i class='fa fa-check text-success'></i></center></a>";
+                    }else{
+                        $actionBtn .= "<a href='javascript:void(0)' class='btn btn-primary btn-sm user_active'
+                        data-id='$data->user_id'
+                        ><center>
+                        <i class='fa fa-minus-circle white'></i>
+                      </center></a>";  
+                    }
+
 
                     return $actionBtn;
                 })
@@ -127,6 +140,17 @@ class ProfileController extends Controller
           'status' => 'success',
         ]);
       }
+
+
+    public function userDeactive(Request $request){
+        $data['user_id'] = $request->user_deactivate_id;
+        $data['status'] = '0';
+        DB::table('vicidial_users')->where('user_id', $request->user_deactivate_id)->update($data);
+        return response()->json([
+          'status' => 'success',
+        ]);
+
+    }  
     
 
 }

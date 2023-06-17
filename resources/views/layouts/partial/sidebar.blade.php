@@ -31,20 +31,20 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('admin.brand') }}" class="nav-link">
+          <a href="{{ route('admin.phone') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Brand List
+              Phones
             </p>
           </a>
         </li>
 
         
         <li class="nav-item">
-          <a href="{{ route('profile.create') }}" class="nav-link">
+          <a href="{{ route('profile') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Add User
+              Users
             </p>
           </a>
         </li>
