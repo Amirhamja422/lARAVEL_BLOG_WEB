@@ -21,7 +21,7 @@ Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('class.edit')
 Route::put('update/{id}', [CategoryController::class, 'update'])->name('class.update');
 
 
-## Resource
+## Resource route
 Route::resource('categories',ScategoryController::class);
 
 ##user

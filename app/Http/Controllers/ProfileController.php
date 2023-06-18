@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use app\Http\Requests\UserRequest;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use DataTables;
@@ -128,6 +129,8 @@ class ProfileController extends Controller
   
 
     public function createUser(Request $request){
+        // $request->validate();
+        // return $request->input();
         // dd($request->all());
         $data['user'] = $request->username;
         $data['pass'] = $request->password;
