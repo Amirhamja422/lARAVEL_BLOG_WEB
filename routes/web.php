@@ -30,6 +30,8 @@ Route::get('profile_view', [ProfileController::class, 'profileView'])->name('pro
 Route::POST('delete', [ProfileController::class,'deleteUser'])->name('profile.delete');
 Route::POST('pro', [ProfileController::class, 'createUser'])->name('profile.create');
 Route::POST('deactive', [ProfileController::class, 'userDeactive'])->name('profile.deactive');
+Route::POST('active', [ProfileController::class, 'userActive'])->name('profile.active');
+
 
 ## phones
 Route::get('phone', [PhoneController::class, 'phoneView'])->name('admin.phone');

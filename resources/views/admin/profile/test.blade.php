@@ -345,10 +345,68 @@ $(document).ready(function(){
                               },
                               success: function (response) {
                                 if(response.status == 'success'){
+                                  Command: toastr["success"]("Success!", "User Deactive successfully");
+
                                   $('#yajra-datatable').DataTable().ajax.reload();
+                                  toastr.options = {
+                              "closeButton": false,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                              }
 
                                 }
                               }
+                        });
+                  }
+            });
+
+
+            $(document).on('click','.user_active',function(){
+                  let isConfirm = confirm('Are you sure to ACTIVE this User?');
+                  if (isConfirm) {
+                    let id =$(this).data('id');
+                        $.ajax({
+                              url:"{{route('profile.active')}}",
+                              type: 'POST',
+                              data: {
+                                    user_activate_id:id
+                              },
+                              success: function (response) {
+                              if(response.status == 'success'){
+                              Command: toastr["success"]("Success!", "User Active successfully");
+                              $('#yajra-datatable').DataTable().ajax.reload();
+
+                              toastr.options = {
+                              "closeButton": false,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                              }
+                            }
+                            }
                         });
                   }
             });

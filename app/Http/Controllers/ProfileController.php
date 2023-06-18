@@ -151,6 +151,16 @@ class ProfileController extends Controller
         ]);
 
     }  
+
+    public function userActive(Request $request){
+        $data['user_id'] = $request->user_activate_id;
+        $data['status'] = '1';
+        DB::table('vicidial_users')->where('user_id', $request->user_activate_id)->update($data);
+        return response()->json([
+          'status' => 'success',
+        ]);
+
+    }  
     
 
 }
