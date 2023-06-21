@@ -48,6 +48,15 @@
             </p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a href="{{ route('admin.crm') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              crm
+            </p>
+          </a>
+        </li>
         
         <li class="nav-item">
           <a href="logout" class="nav-link">

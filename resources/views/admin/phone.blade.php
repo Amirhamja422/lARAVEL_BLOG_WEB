@@ -217,4 +217,47 @@ $(document).ready(function(){
       });
     
     });
+
+    $(document).on('click','.user_deactivate',function(){
+                  let isConfirm = confirm('Are you sure to DEACTIVE this Phone?');
+                  if (isConfirm) {
+                    let id =$(this).data('id');
+                        $.ajax({
+                              url:"{{route('phone.active')}}",
+                              type: 'POST',
+                              data: {
+                                    user_deactivate_id:id
+                              },
+                              success: function (response) {
+                                if(response.status == 'success'){
+                                  Command: toastr["success"]("Success!", "User Deactive successfully");
+
+                                  $('#yajra-datatable').DataTable().ajax.reload();
+                                  toastr.options = {
+                              "closeButton": false,
+                              "debug": false,
+                              "newestOnTop": false,
+                              "progressBar": false,
+                              "positionClass": "toast-top-right",
+                              "preventDuplicates": false,
+                              "onclick": null,
+                              "showDuration": "300",
+                              "hideDuration": "1000",
+                              "timeOut": "5000",
+                              "extendedTimeOut": "1000",
+                              "showEasing": "swing",
+                              "hideEasing": "linear",
+                              "showMethod": "fadeIn",
+                              "hideMethod": "fadeOut"
+                              }
+
+                                }
+                              }
+                        });
+                  }
+            });
+
+
+
+
 </script>

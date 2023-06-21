@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CrmController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\PhoneController;
@@ -36,6 +37,9 @@ Route::POST('active', [ProfileController::class, 'userActive'])->name('profile.a
 ## phones
 Route::get('phone', [PhoneController::class, 'phoneView'])->name('admin.phone');
 Route::get('phone-active', [PhoneController::class, 'phoneActive'])->name('phone.active');
+
+##crm
+Route::get('crm',[CrmController::class,'crmView'])->name('admin.crm');
 
 
 ## login and register users web route
