@@ -35,6 +35,7 @@ Route::POST('active', [ProfileController::class, 'userActive'])->name('profile.a
 
 ## phones
 Route::get('phone', [PhoneController::class, 'phoneView'])->name('admin.phone');
+Route::get('phone-active', [PhoneController::class, 'phoneActive'])->name('phone.active');
 
 
 ## login and register users web route
