@@ -101,7 +101,8 @@ $(document).ready(function(){
     function searchData() {
                 const start_date = $('#start_date').val();
                 const end_date = $('#end_date').val();
-
+                var url = "{{ URL::to('crm-download') }}/" + start_date + "/" + end_date;
+                $('#download').attr('href', url);
                 $('#yajra-datatable').DataTable({
                   processing: true,
                   serverSide: true,

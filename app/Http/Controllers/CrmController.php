@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+
 class CrmController extends Controller
 {
     //
@@ -28,5 +29,21 @@ class CrmController extends Controller
            }
            return view('admin.crm');
     }
- 
+
+
+    /**
+     * Download CRM report in excel.
+     *
+     * @return text/xlsx
+     */
+    public function crmDataDownload($start_date, $end_date)
+    {
+        ## check validation
+        if (!empty($start_date) && !empty($end_date) && ($start_date <= $end_date)) {
+            ## convert date using helper function
+            $start_date = $start_date;
+            $end_date = $end_date;
+
+        }
+    }
 }

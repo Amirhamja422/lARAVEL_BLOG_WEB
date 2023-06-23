@@ -40,6 +40,7 @@ Route::get('phone-active', [PhoneController::class, 'phoneActive'])->name('phone
 
 ##crm
 Route::get('crm',[CrmController::class,'crmView'])->name('admin.crm');
+Route::get('crm-download/{start_date}/{end_date}', [CrmController::class, 'crmDataDownload'])->name('crm.download');
 
 
 ## login and register users web route
