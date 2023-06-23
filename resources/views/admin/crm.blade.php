@@ -13,11 +13,33 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-              <li class="breadcrumb-item active"> Brand DataTables</li>
+
 
             </ol>
           </div>
+
+
+
+
+        <div class="row">
+          <div class="col"  style="display:flex; gap:47px;">
+            <label>Start Date</label>
+            <input type='date' class="form-control" id='start_date' placeholder='Select Date' style='width: 350px;' >
+
+            <label>End Date</label>
+            <input type='date' class="form-control" id='end_date' placeholder='Select Date' style='width: 350px;' >
+
+              <button type="submit" class="btn btn-sm btn-primary px-3" onclick="searchData()"><i
+                      class="bi bi-search mr-1'"></i>Search</button>
+              <a href="" id="download" class="btn btn-sm btn-info px-3"><i
+                      class="bi bi-download mr-1"></i>
+                  Download</a>
+          </div>
+      </div>
+
+           
+
+
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -32,7 +54,6 @@
                      <table id="yajra-datatable" class="table table-bordered table-striped">
                      <thead>
                        <tr>
-                        <th>SL</th>
                         <th>ID</th>
                         <th>Agent</th>
                         <th>Phone</th>
@@ -59,6 +80,8 @@
 
    @endsection
    <meta name="csrf-token" content="{{ csrf_token() }}">
+   <!-- Datepicker -->
+
    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -74,29 +97,69 @@ $(document).ready(function(){
       });
 });
 
-  $(function () {
-    var table = $('#yajra-datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('admin.crm') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'id', name: 'id'},
-            {data: 'agent', name: 'agent'},
-            {data: 'phone', name: 'phone'},
-            {data: 'email', name: 'email'},
-            {data: 'name', name: 'name'},
-            {data: 'nid', name: 'nid'},
-            {data: 'gender', name: 'gender'},
+;
+    function searchData() {
+                const start_date = $('#start_date').val();
+                const end_date = $('#end_date').val();
 
-            {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            },
-        ]
-      });
-    
-    });
-</script>
+                $('#yajra-datatable').DataTable({
+                  processing: true,
+                  serverSide: true,
+                    ajax: ({
+                        url: "{{ route('admin.crm') }}",
+                        type: "GET",
+                        data: {
+                            start_date: start_date,
+                            end_date: end_date,
+                        }
+                    }),
+                    displayLength: 10,
+                    columns: [
+
+                       {
+                            data: 'id',
+                            name: 'id'
+                        },
+                        {
+                            data: 'agent',
+                            name: 'agent'
+                        },
+                        {
+                            data: 'phone',
+                            name: 'phone'
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'name',
+                            name: 'name'
+                        },
+                        {
+                            data: 'nid',
+                            name: 'nid'
+                        },
+                        {
+                            data: 'gender',
+                            name: 'gender'
+                        },
+                        
+                        {
+                            data: 'action', 
+                            name: 'action', 
+                            orderable: true, 
+                            searchable: true
+                        },
+                     
+                    ]
+                });
+            }
+        </script>
+
+
+
+
+
+
+
