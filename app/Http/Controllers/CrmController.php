@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use app\Exports\CrmDataExport;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-
 class CrmController extends Controller
 {
     //
@@ -43,7 +44,13 @@ class CrmController extends Controller
             ## convert date using helper function
             $start_date = $start_date;
             $end_date = $end_date;
+            
+            return Excel::download (new CrmDataExport($start_date . ' 00:00:00', $end_date . ' 23:59:59'));
+            return view('admin.crm');
 
+            ## return to report page
+            // return redirect()->back();
         }
     }
 }
+
