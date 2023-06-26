@@ -12,7 +12,7 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
 
-## Category 
+## Category controllers route
 Route::get('/', [CategoryController::class,'index'])->name('index');
 Route::get('test', [CategoryController::class, 'tests'])->name('admin.category');
 Route::get('create', [CategoryController::class, 'create'])->name('cat.category');
