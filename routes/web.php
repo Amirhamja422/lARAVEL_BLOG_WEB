@@ -11,9 +11,9 @@ use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
-## component base task start
+## component base route task start
 
-## component base task end
+## component base route task end 
 
 
 ## Category controllers route
