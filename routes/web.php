@@ -11,6 +11,10 @@ use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
+## component base task start
+
+## component base task end
+
 
 ## Category controllers route
 Route::get('/', [CategoryController::class,'index'])->name('index');
@@ -48,6 +52,8 @@ Route::get('login', [CustomAuthCotroller::class, 'login'])->name('login');
 Route::get('register', [CustomAuthCotroller::class, 'registration'])->name('register');
 Route::post('regCreate', [CustomAuthCotroller::class, 'regCreate'])->name('register.create');
 Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('login-user');
+
+
 
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
