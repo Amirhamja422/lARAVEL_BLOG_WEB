@@ -23,8 +23,8 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
-  
+                   <h3><?php echo $data['inbound'];?></h3>
+
                   <p>Inbound Call</p>
                 </div>
                 <div class="icon">
@@ -38,7 +38,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3><?php echo $data['outbound'];?></h3>
   
                   <p>Outbound Call</p>
                 </div>
@@ -68,7 +68,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                    <h3><?php echo $data['total'];?></h3>
   
                   <p>Total User</p>
                 </div>
