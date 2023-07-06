@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CrmController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
@@ -52,6 +53,10 @@ Route::get('login', [CustomAuthCotroller::class, 'login'])->name('login');
 Route::get('register', [CustomAuthCotroller::class, 'registration'])->name('register');
 Route::post('regCreate', [CustomAuthCotroller::class, 'regCreate'])->name('register.create');
 Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('login-user');
+
+## Dashboard web routes
+Route::get('dashboard',[DashboardController::class,'dashboardView'])->name('dashboard');
+
 
 
 
