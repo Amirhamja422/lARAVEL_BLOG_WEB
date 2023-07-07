@@ -70,7 +70,7 @@
                 <div class="inner">
                     <h3><?php echo $data['total'];?></h3>
   
-                  <p>Total User</p>
+                  <p>Total Call</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>

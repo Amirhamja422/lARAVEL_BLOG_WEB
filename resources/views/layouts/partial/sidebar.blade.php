@@ -13,10 +13,11 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="{{ route('cat.category') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+
             <p>
-              <i class="nav-icon fas fa-th"></i>
               Add Category
-              {{-- <span class="right badge badge-danger">New</span> --}}
+              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
@@ -68,11 +69,12 @@
             <p>
               Log Out
             </p>
+
           </a>
         </li>
 
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
             <p>
@@ -131,7 +133,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
 
 
