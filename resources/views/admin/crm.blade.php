@@ -34,6 +34,10 @@
               <a href="" id="download" class="btn btn-sm btn-info px-3"><i
                       class="bi bi-download mr-1"></i>
                   Download</a>
+               
+                  {{-- <a href="{{ route('crm.download') }}" id="download" class="btn btn-sm btn-info px-3"><i
+                    class="bi bi-download mr-1"></i>
+                Download</a>      --}}
           </div>
       </div>
 
