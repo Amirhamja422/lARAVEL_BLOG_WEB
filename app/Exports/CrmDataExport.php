@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Exports;
-
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -38,9 +37,6 @@ class CrmDataExport implements FromQuery, WithHeadings, WithMapping
                 ->limit(1000)
                 ->orderBy('date', 'asc');
     }
-
-
-
     
     /**
      * covert data if need

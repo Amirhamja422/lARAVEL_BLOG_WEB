@@ -59,7 +59,9 @@ Route::post('login-user', [CustomAuthCotroller::class, 'loginUser'])->name('logi
 Route::get('dashboard',[DashboardController::class,'dashboardView'])->name('dashboard');
 
 
-
+##user download
+Route::get('user',[CrmController::class,'userView'])->name('admin.user');
+Route::get('user-download', [CrmController::class, 'exportExcelFile'])->name('user.export');
 
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
