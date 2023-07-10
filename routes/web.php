@@ -63,6 +63,10 @@ Route::get('dashboard',[DashboardController::class,'dashboardView'])->name('dash
 Route::get('user',[CrmController::class,'userView'])->name('admin.user');
 Route::get('user-download', [CrmController::class, 'exportExcelFile'])->name('user.export');
 
+
+##aux report route
+// Route::get('user',[CrmController::class,'userView'])->name('admin.user');
+
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
 
