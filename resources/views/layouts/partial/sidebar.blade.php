@@ -64,6 +64,17 @@
         </li>
 
         <li class="nav-item">
+          <a href="{{ route('admin.inbound') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Inbound
+              <span class="right badge badge-danger">New</span>
+            </p>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
           <a href="{{ route('admin.user') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>

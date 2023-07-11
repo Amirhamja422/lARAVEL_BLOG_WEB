@@ -10,6 +10,7 @@ use App\Http\Controllers\CrmController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\inboundController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
 
@@ -64,8 +65,8 @@ Route::get('user',[CrmController::class,'userView'])->name('admin.user');
 Route::get('user-download', [CrmController::class, 'exportExcelFile'])->name('user.export');
 
 
-##aux report route
-// Route::get('user',[CrmController::class,'userView'])->name('admin.user');
+##inbound report
+Route::get('inbound',[inboundController::class,'inbound'])->name('admin.inbound');
 
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
