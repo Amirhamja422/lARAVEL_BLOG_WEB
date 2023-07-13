@@ -53,6 +53,18 @@
           </a>
         </li>
 
+        
+        <li class="nav-item">
+          <a href="{{ route('admin.crmupload') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Add Crm Data
+              <span class="right badge badge-danger">New</span>
+            </p>
+          </a>
+        </li>
+
+
         <li class="nav-item">
           <a href="{{ route('admin.crm') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>

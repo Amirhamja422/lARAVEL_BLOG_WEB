@@ -68,9 +68,12 @@ Route::get('user-download', [CrmController::class, 'exportExcelFile'])->name('us
 ##inbound report
 Route::get('inbound',[inboundController::class,'inbound'])->name('admin.inbound');
 
+
+##csv upload 
+Route::get('csv-upload',[CrmController::class,'csvUpload'])->name('admin.crmupload');
+
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
-
 
 
 ## Clear application cache:

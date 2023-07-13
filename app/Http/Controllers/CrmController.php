@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\CrmExport;
 use App\Exports\StudentExport;
-use app\Exports\TestExportUsers;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use DataTables;
@@ -53,12 +52,13 @@ class CrmController extends Controller
         }
     }
 
-    // public function crmDataDownload()
-    // {
-      
-    //      return Excel::download(new CrmExport, 'crmData.xlsx');
-    // }
-    
+
+
+   public function csvUpload(){
+    return view('admin.crmupload');
+   }
+
+
 
     public function userView(){
         return view('admin.user');
