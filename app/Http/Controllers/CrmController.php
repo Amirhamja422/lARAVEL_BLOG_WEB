@@ -64,9 +64,9 @@ class CrmController extends Controller
        'file' => 'required|mimes:jpg,png|max:2048',
     ]);
 
-       $filename = time().'.'.$request->file->extension();
-       $request->file->move(public_path('file'), $filename); 
-       File::create(['name'=>$filename]);
+       $fileName = time().'.'.$request->file->extension();
+       $request->file->move(public_path('file'), $fileName); 
+       File::create(['name'=>$fileName]);
        return response()->json('File Upload Success');
     }
 

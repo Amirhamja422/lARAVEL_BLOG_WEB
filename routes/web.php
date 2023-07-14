@@ -71,7 +71,11 @@ Route::get('inbound',[inboundController::class,'inbound'])->name('admin.inbound'
 
 ##csv upload 
 Route::get('csv-view',[CrmController::class,'fileView'])->name('admin.crmupload');
-Route::get('csv-upload',[CrmController::class,'csvUpload'])->name('admin.csvupload');
+Route::POST('csv-upload',[CrmController::class,'csvUpload'])->name('admin.csvupload');
+
+
+## image Crud
+
 
 ## logout form
 Route::get('/logout', [CustomAuthCotroller::class, 'logout']);
