@@ -18,15 +18,16 @@
 
         <div class="row">
           <div class="col"  style="display:flex; gap:47px;">
-            <form action="" method="" enctype="multipart/form-data">
+            <form id="fileUpload">
                 @csrf
                 <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
                     <div class="custom-file text-left">
-                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <input type="file" name="file" class="custom-file-input" id="file">
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-sm btn-primary px-3" onclick="importData()"><i class="bi bi-search mr-1'"></i>import data</button>
+                <button type="submit">import data</button>
+                <span id="error" style="colorLred;"></span>
             </form>
 
           
@@ -55,9 +56,33 @@ $(document).ready(function(){
 });
 
 
-function importData(){
-    
- }
+  $(document).ready(function(){
+    $("fileUpload").click(function(e){
+    e.preventDefault();
+    $(#error).text('');
+    var formData = new FormData(this);
+    alert(formData);
+
+  $.ajax({
+    type: 'POST',
+    url:"{{ route('admin.csvupload') }}",
+    data:formData,
+    contentType: false,
+    processData: false,
+    success:(reponse)=>{
+      if(reponse){
+        this.reset();
+        alert('File uploaded successfully');
+      }
+
+    },
+    error:function(){
+      $('#error').text('response.responseJSON.message');
+
+    }     
+  });
+});
+});
 </script>
 
 

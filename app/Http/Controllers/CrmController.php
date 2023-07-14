@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\File;
 use App\Exports\CrmExport;
 use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -46,7 +47,6 @@ class CrmController extends Controller
             $start_date = $start_date;
             $end_date = $end_date;
             return Excel::download(new CrmExport($start_date . ' 00:00:00', $end_date . ' 23:59:59'), 'users.xlsx');
-
             ## return to report page
             // return redirect()->back();
         }
@@ -54,9 +54,21 @@ class CrmController extends Controller
 
 
 
-   public function csvUpload(){
-    return view('admin.crmupload');
-   }
+    public function fileView(){
+        return view('admin.crmupload');
+    }
+   
+
+    public function csvUpload(Request $request){
+        $request->validate([
+       'file' => 'required|mimes:jpg,png|max:2048',
+    ]);
+
+       $filename = time().'.'.$request->file->extension();
+       $request->file->move(public_path('file'), $filename); 
+       File::create(['name'=>$filename]);
+       return response()->json('File Upload Success');
+    }
 
 
 
@@ -70,6 +82,8 @@ class CrmController extends Controller
         return Excel::download(new StudentExport, 'students.xlsx');
 
     } 
+
+
 
 
     
