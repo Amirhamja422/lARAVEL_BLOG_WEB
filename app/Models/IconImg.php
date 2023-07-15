@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class file extends Model
+class IconImg extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'file_path'
+        'title_name',
+        'image'
     ];
 }

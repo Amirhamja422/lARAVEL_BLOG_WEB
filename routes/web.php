@@ -10,6 +10,7 @@ use App\Http\Controllers\CrmController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImageCrudController;
 use App\Http\Controllers\inboundController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ScategoryController;
@@ -75,6 +76,9 @@ Route::POST('csv-upload',[CrmController::class,'csvUpload'])->name('admin.csvupl
 
 
 ## image Crud
+Route::get('admin-logo',[ImageCrudController::class,'imgView'])->name('admin.adminlogo');
+Route::POST('img-upload',[ImageCrudController::class,'imgUpload'])->name('admin.fileUpload');
+
 
 
 ## logout form

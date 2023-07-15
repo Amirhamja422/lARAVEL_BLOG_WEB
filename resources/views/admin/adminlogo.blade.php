@@ -55,7 +55,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                      <form action="" method="post" id="update_product_form">
+                      <form action="" method="POST" id="update_product_form">
                         <div class="form-group row">
                           <label for="user_id" class="col-sm-2 col-form-label">Title</label>
                           <div class="col-sm-10">
@@ -89,9 +89,8 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <form action="" method="post" enctype="multipart/form-data">
+              <form id="imgupload" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 <div class="form-group row">
                   <label for="title_name" class="col-sm-2 col-form-label">Title</label>
                   <div class="col-sm-10">
@@ -101,8 +100,9 @@
                 <div class="form-group row">
                   <label for="icon" class="col-sm-2 col-form-label">Icon</label>
                   <div class="col-sm-10">
-                    <input type="file" name="file" id="chooseFile">
-                  </div>
+                    <input type="file" autofocus name="file" id="file">
+                    <span id="test"></span>
+               </div>
                 </div>
               </form>
             </div>
@@ -114,16 +114,10 @@
     </div>
   </div>
 
-
-
-
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -134,89 +128,29 @@ $(document).ready(function(){
       });
 });
 
-//   $(function () {
-//     var table = $('#yajra-datatable').DataTable({
-//         processing: true,
-//         serverSide: true,
-//         ajax: "{{ route('profile.view') }}",
-//         columns: [
-//             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-//             {data: 'user_id', name: 'user_id'},
-//             {data: 'user', name: 'user'},
-//             {data: 'pass', name: 'pass'},
-//             {data: 'full_name', name: 'full_name'},
-//             {data: 'user_group', name: 'user_group'},
-//             {data: 'phone_login', name: 'phone_login'},
-//             {data: 'phone_pass', name: 'phone_pass'},
-//             {
-//                 data: 'action', 
-//                 name: 'action', 
-//                 orderable: true, 
-//                 searchable: true
-//             },
-//         ]
-//       });
-    
-//     });
+  $(document).on('click','.uaerCretaeData',function(){
+    var form_data = new FormData();
+    var file = $('#file').prop('files')[0];
+		var title_name = $('#title_name').val();
+    if(title_name ==''){
+      document.getElementById('test').innerHTML='please select a file';
 
+    }
+    form_data.append('file', file);
+		form_data.append('title_name', title_name);
+    $.ajax({
+      url:"{{route('admin.fileUpload')}}",
+      	type: "POST",
+				data:  form_data,
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(data){
+					console.log(data);
+					$('#imgupload').trigger('reset');
 
-
-    $(document).on('click','.uaerCretaeData',function(){
-           let title_name =$('#title_name').val();
-           alert(title_name);     
-           let icon =$('#icon').val();     
-           let full_name =$('#full_name').val();     
-           let user_group =$('#user_group').val();     
-           let phone_login =$('#phone_login').val();     
-           let phone_pass =$('#phone_pass').val();
-           $.ajax({
-            url:"{{route('profile.create')}}",
-                method:'POST',
-                data:{
-                    title_name:title_name,
-                    icon:icon,
-                    full_name:full_name,
-                    user_group:user_group,
-                    phone_login:phone_login,
-                    phone_pass:phone_pass
-                    },
-                success:function(response){
-                     // console.log(response);
-                     if(response.status == 'success'){
-                    Command: toastr["success"]("Success!", "User Added successfully");
-                    $('#yajra-datatable').DataTable().ajax.reload();
-
-                    toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                        }
-                    }
-                    },
-                    error:function(err){
-                    console.log(err);
-                    let error=err.responseJSON;
-                    $.each(error.errors,function(index,value){
-                    console.log(value);
-                    $('.errorMesgContainer').append('<div class="alert alert-danger" role="alert">'+value+'</div>');
-
-                    });
-
-                    }
-
-                })
-            });
+				},         
+			});
+    });
 
 </script>
