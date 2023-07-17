@@ -23,12 +23,12 @@ class CrmController extends Controller
                    ->addColumn('action', function($crmData){
                         $actionBtn = "<a href='javascript:void(0)' class='btn btn-warning btn-sm user_deactivate'
                         data-id='$crmData->id'
-                        ><center><i class='fa fa-check text-success'></i></center></a>";   
+                        ><center><i class='fa fa-check text-success'></i></center></a>";
                        return $actionBtn;
                    })
                    ->rawColumns(['action'])
                    ->make(true);
-  
+
            }
            return view('admin.crm');
     }
@@ -57,34 +57,48 @@ class CrmController extends Controller
     public function fileView(){
         return view('admin.crmupload');
     }
-   
+
 
     public function csvUpload(Request $request){
         $file = $request->file('file');
-        $csvFile = fopen($file->getRealPath(), 'r');
-        // return $csvFile;
+        if(($open = fopen($file->getRealPath(), 'r')) !== FALSE){
+        // $r=0;
+        while(($row = fgetcsv($open,100,",")) !== FALSE){
+        //   if($r>0){
+        // print_r($row);
+        //   $data = new User();
 
 
+          $values = array('user_email' => $row[0],'ip_address' => $row[1]);
+          DB::table('ip')->insert($values);
 
-    }
+        //   $data-save();
+        //   }
+        //   $r++;
+        }
+      }
+    $return = ['status'=>'success','msg'=>'successfully uploaded file'];
+
+     }
+
 
 
 
     public function userView(){
         return view('admin.user');
       }
-  
 
-    public function exportExcelFile() 
+
+    public function exportExcelFile()
     {
         return Excel::download(new StudentExport, 'students.xlsx');
 
-    } 
+    }
 
 
 
 
-    
+
 
 }
 
