@@ -60,16 +60,17 @@ class CrmController extends Controller
 
 
     public function csvUpload(Request $request){
+        $title_name = $request->csv_title;
         $file = $request->file('file');
         if(($open = fopen($file->getRealPath(), 'r')) !== FALSE){
         // $r=0;
         while(($row = fgetcsv($open,100,",")) !== FALSE){
         //   if($r>0){
         // print_r($row);
-        //   $data = new User();
+        //   $data = new User();*
 
 
-          $values = array('user_email' => $row[0],'ip_address' => $row[1]);
+          $values = array('user_email' => $row[0],'ip_address' => $row[1],'title_name'=>$title_name);
           DB::table('ip')->insert($values);
 
         //   $data-save();

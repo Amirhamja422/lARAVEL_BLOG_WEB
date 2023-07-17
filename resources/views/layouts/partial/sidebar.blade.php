@@ -16,12 +16,12 @@
             <i class="nav-icon fas fa-th"></i>
 
             <p>
-              Add Category
+              Category
               <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a href="{{ route('admin.category') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -32,7 +32,7 @@
           </a>
         </li>
 
-        
+
         <li class="nav-item">
           <a href="{{ route('admin.adminlogo') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -53,7 +53,7 @@
           </a>
         </li>
 
-        
+
         <li class="nav-item">
           <a href="{{ route('profile') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -64,7 +64,28 @@
           </a>
         </li>
 
-        
+        <li class="nav-item">
+            <a href="{{ route('admin.crm') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                crm
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('admin.inbound') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Inbound
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+
+
         <li class="nav-item">
           <a href="{{ route('admin.crmupload') }}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -77,24 +98,17 @@
 
 
         <li class="nav-item">
-          <a href="{{ route('admin.crm') }}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              crm
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
+            <a href="{{ route('admin.email') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                EMAIL
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
 
-        <li class="nav-item">
-          <a href="{{ route('admin.inbound') }}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Inbound
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
+
+
 
 
         <li class="nav-item">
@@ -106,7 +120,7 @@
             </p>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a href="logout" class="nav-link">
             <i class="nav-icon fas fa-th"></i>

@@ -81,7 +81,8 @@ Route::get('admin-logo',[ImageCrudController::class,'imgView'])->name('admin.adm
 Route::POST('img-upload',[ImageCrudController::class,'imgUpload'])->name('admin.fileUpload');
 
 ##Email Integration
-Route::get('email',[EmailController::class,'emailView'])->name('admin.email');
+Route::get('email',[EmailController::class,'emailView'])->name('admin');
+Route::POST('email-send',[EmailController::class,'emailSend'])->name('admin.email');
 
 
 
