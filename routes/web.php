@@ -10,6 +10,7 @@ use App\Http\Controllers\CrmController;
 // use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\CustomAuthCotroller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ImageCrudController;
 use App\Http\Controllers\inboundController;
 use App\Http\Controllers\PhoneController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\ScategoryController;
 
 ## component base route task start
 
-## component base route task end 
+## component base route task end
 
 
 ## Category controllers route
@@ -70,14 +71,18 @@ Route::get('user-download', [CrmController::class, 'exportExcelFile'])->name('us
 Route::get('inbound',[inboundController::class,'inbound'])->name('admin.inbound');
 
 
-##csv upload 
+##csv upload
 Route::get('csv-view',[CrmController::class,'fileView'])->name('admin.crmupload');
 Route::POST('csv-upload',[CrmController::class,'csvUpload'])->name('admin.csvupload');
 
 
-## image Crud
+## image upload
 Route::get('admin-logo',[ImageCrudController::class,'imgView'])->name('admin.adminlogo');
 Route::POST('img-upload',[ImageCrudController::class,'imgUpload'])->name('admin.fileUpload');
+
+##Email Integration
+Route::get('email',[EmailController::class,'emailView'])->name('admin.email');
+
 
 
 

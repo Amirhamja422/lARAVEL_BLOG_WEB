@@ -15,7 +15,7 @@
             <ol class="breadcrumb float-sm-right">
               {{-- <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
               <li class="breadcrumb-item active"> Brand DataTables</li> --}}
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#userCretaeModal">ADD ICON</button>
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#userCretaeModal">ADD CSV</button>
 
             </ol>
           </div>
@@ -46,38 +46,6 @@
             </div>
           </div>
       </div>
-        <!-- Modal Start -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="" method="post" id="update_product_form">
-                        <div class="form-group row">
-                          <label for="user_id" class="col-sm-2 col-form-label">Title</label>
-                          <div class="col-sm-10">
-                            <input type="up_title_name" class="form-control" id="up_title_name" name="up_title_name" placeholder="Enter Title">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="title_name" class="col-sm-2 col-form-label">Icon</label>
-                          <div class="col-sm-10">
-                            <input type="icon" class="form-control" id="up_icon" name="up_con" placeholder="Enter Icon">
-                          </div>
-                        </div>
-      
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="updateData()">Update</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- Modal End -->
    </section>  
    
    
@@ -85,30 +53,30 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">ADD ICON</h5>
+                <h5 class="modal-title">CSV FILE</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <form action="" method="post" enctype="multipart/form-data">
+              <form id="formDataValu" class="form-horizontal" method="post">
                 @csrf
 
                 <div class="form-group row">
-                  <label for="title_name" class="col-sm-2 col-form-label">Title</label>
+                  <label for="csv_title" class="col-sm-2 col-form-label">CSV Title</label>
                   <div class="col-sm-10">
-                    <input type="title_name" class="form-control" id="title_name" name="title_name" placeholder="Enter Title">
+                    <input type="csv_title" class="form-control" id="csv_title" name="csv_title" placeholder="Enter Csv Title">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="icon" class="col-sm-2 col-form-label">Icon</label>
+                  <label for="icon" class="col-sm-2 col-form-label">CSV File</label>
                   <div class="col-sm-10">
-                    <input type="file" name="file" id="chooseFile">
+                    <input type="file" name="file" id="file">
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary uaerCretaeData">Save</button>
+                <button type="button" class="btn btn-primary csvUploadData">Save</button>
             </div>
         </div>
     </div>
@@ -133,6 +101,29 @@ $(document).ready(function(){
                 }
       });
 });
+
+
+
+$(document).on('click','.csvUploadData',function(){
+           let csv_title =$('#csv_title').val();
+           var form_data = new FormData();
+           var file_data = $('#file').prop('files')[0];
+           form_data.append('file', file_data);
+           form_data.append('csv_title', csv_title);
+           $.ajax({
+              url:"{{route('admin.csvupload')}}",
+              type: "POST",
+              data:  form_data,
+              contentType: false,
+              cache: false,
+              processData:false,
+              success: function(data){
+              console.log(data);
+					    //  $('#formDataValu').trigger('reset');
+			         	},         
+			         });
+            });
+
 
 //   $(function () {
 //     var table = $('#yajra-datatable').DataTable({
@@ -160,63 +151,5 @@ $(document).ready(function(){
 //     });
 
 
-
-    $(document).on('click','.uaerCretaeData',function(){
-           let title_name =$('#title_name').val();
-           alert(title_name);     
-           let icon =$('#icon').val();     
-           let full_name =$('#full_name').val();     
-           let user_group =$('#user_group').val();     
-           let phone_login =$('#phone_login').val();     
-           let phone_pass =$('#phone_pass').val();
-           $.ajax({
-            url:"{{route('profile.create')}}",
-                method:'POST',
-                data:{
-                    title_name:title_name,
-                    icon:icon,
-                    full_name:full_name,
-                    user_group:user_group,
-                    phone_login:phone_login,
-                    phone_pass:phone_pass
-                    },
-                success:function(response){
-                     // console.log(response);
-                     if(response.status == 'success'){
-                    Command: toastr["success"]("Success!", "User Added successfully");
-                    $('#yajra-datatable').DataTable().ajax.reload();
-
-                    toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                        }
-                    }
-                    },
-                    error:function(err){
-                    console.log(err);
-                    let error=err.responseJSON;
-                    $.each(error.errors,function(index,value){
-                    console.log(value);
-                    $('.errorMesgContainer').append('<div class="alert alert-danger" role="alert">'+value+'</div>');
-
-                    });
-
-                    }
-
-                })
-            });
 
 </script>

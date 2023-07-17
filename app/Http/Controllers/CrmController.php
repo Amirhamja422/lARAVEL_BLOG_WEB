@@ -60,14 +60,12 @@ class CrmController extends Controller
    
 
     public function csvUpload(Request $request){
-        $request->validate([
-       'file' => 'required|mimes:jpg,png|max:2048',
-    ]);
+        $file = $request->file('file');
+        $csvFile = fopen($file->getRealPath(), 'r');
+        // return $csvFile;
 
-       $fileName = time().'.'.$request->file->extension();
-       $request->file->move(public_path('file'), $fileName); 
-       File::create(['name'=>$fileName]);
-       return response()->json('File Upload Success');
+
+
     }
 
 
